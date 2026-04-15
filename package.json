@@ -1,20 +1,17 @@
-const express = require("express");
-const app = express();
-app.use(express.json());
-
-const VERIFY_TOKEN = "etechsolutionwebhook18";
-
-app.get("/webhook", (req, res) => {
-  if (req.query["hub.verify_token"] === VERIFY_TOKEN) {
-    res.send(req.query["hub.challenge"]);
-  } else {
-    res.sendStatus(403);
-  }
-});
-
-app.post("/webhook", (req, res) => {
-  console.log("Webhook event:", JSON.stringify(req.body, null, 2));
-  res.sendStatus(200);
-});
-
-app.listen(3000, () => console.log("Webhook running on port 3000"));
+{
+  "name": "webhook-server",
+  "version": "1.0.0",
+  "description": "Simple Express webhook server for Meta/WhatsApp verification",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "keywords": ["webhook", "express", "meta", "whatsapp"],
+  "author": "",
+  "license": "ISC"
+}
